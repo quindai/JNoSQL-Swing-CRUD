@@ -1,0 +1,4 @@
+Esse pacote contém toda a lógica para conexão com os bancos de dados NoSQL, tal como
+a conexão feita nos bancos de dados SQL.
+
+JNoSQL (Diana e Artemis)
