@@ -48,8 +48,8 @@ public class MainWindow extends JFrame{
 	private void init(){
 		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		JPanel panel, panelTop, panelButtons, panelRadios, panelTable, panelCode;
-		btnAdd = new JButton(new ActionAdd("", new ImageIcon(getClass().getResource("/img/fileDel.png")), "Adicionar registro", new Integer(KeyEvent.VK_A)));
-		btnDelete = new JButton("Apagar");
+		btnAdd = new JButton(new ActionAdd("", new ImageIcon(getClass().getResource("/img/fileAdd.png")), "Adicionar registro", new Integer(KeyEvent.VK_A)));
+		btnDelete = new JButton(new ActionAdd("", new ImageIcon(getClass().getResource("/img/fileDel.png")), "Apagar registro", new Integer(KeyEvent.VK_A)));
 		rbCassandra = new JRadioButton("Cassandra");
 		rbCouchbase = new JRadioButton("CouchBase");
 		rbMongo = new JRadioButton("Mongo");
