@@ -2,11 +2,15 @@ package br.ic.ufal.bd2.view;
 
 import java.util.Map;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 import br.ic.ufal.bd2.model.Student;
 
-public class MyTableModel extends AbstractTableModel{
+public class MyTableModel extends AbstractTableModel {
 	private String [] cols = {"Coluna 1", "Coluna 2", "Coluna 3"};
 	//private List<Student> data;
 	private Object[][] data = {

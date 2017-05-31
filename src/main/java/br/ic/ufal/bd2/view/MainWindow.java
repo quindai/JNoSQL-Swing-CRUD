@@ -3,6 +3,8 @@ package br.ic.ufal.bd2.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -49,7 +51,7 @@ public class MainWindow extends JFrame{
 		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		JPanel panel, panelTop, panelButtons, panelRadios, panelTable, panelCode;
 		btnAdd = new JButton(new ActionAdd("", new ImageIcon(getClass().getResource("/img/fileAdd.png")), "Adicionar registro", new Integer(KeyEvent.VK_A)));
-		btnDelete = new JButton(new ActionAdd("", new ImageIcon(getClass().getResource("/img/fileDel.png")), "Apagar registro", new Integer(KeyEvent.VK_A)));
+		btnDelete = new JButton(new ActionDelete("", new ImageIcon(getClass().getResource("/img/fileDel.png")), "Apagar registro", new Integer(KeyEvent.VK_A)));
 		rbCassandra = new JRadioButton("Cassandra");
 		rbCouchbase = new JRadioButton("CouchBase");
 		rbMongo = new JRadioButton("Mongo");
@@ -58,6 +60,22 @@ public class MainWindow extends JFrame{
 		ButtonGroup grp = new ButtonGroup();	//faz a magia do radio button
 		tabela = new JTable( new MyTableModel() );
 		tabela.setFillsViewportHeight(true);
+		
+		tabela.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				if (tabela.getSelectedRow() != -1){
+					if (!btnDelete.isEnabled()) btnDelete.setEnabled(true);
+					if (e.getClickCount() == 2){ //pega clique duplo
+						int row = tabela.getSelectedRow();
+						int col = tabela.getSelectedColumn();
+						new NewRegister(MainWindow.this, new String []{"nada", "nepias"}).setVisible(true);
+					}
+				} else {
+					btnDelete.setEnabled(false);
+				}
+			}
+		});
+		
 		grp.add(rbRedis);
 		grp.add(rbCassandra);
 		grp.add(rbCouchbase);
@@ -105,6 +123,10 @@ public class MainWindow extends JFrame{
 		getContentPane().add(panel);		//adiciona elementos na janela
 	}
 	
+	private void addRegister(String database){
+		
+	}
+	
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -141,7 +163,18 @@ public class MainWindow extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 		
-			JOptionPane.showMessageDialog(null, "Código para adicionar registro.");
+			new NewRegister(MainWindow.this).setVisible(true);
 		}
-	}//fim de ActionStart
+	}//fim de ActionAdd
+	
+	class ActionDelete extends MyActions{
+		public ActionDelete(String text, ImageIcon icon, String desc, Integer mnemonic) {
+			super(text, icon, desc, mnemonic);
+		}
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+		
+			JOptionPane.showMessageDialog(null, "Código para apagar registro.");
+		}
+	}//fim de ActionDelete
 }
