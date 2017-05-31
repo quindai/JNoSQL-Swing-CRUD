@@ -28,12 +28,12 @@
 		</dependency>
 
 <!-- Todas as dependências do JNoSQL -->
-		<!-- dependency>
+		<!--  dependency>
 			<groupId>org.jnosql.diana</groupId>
 			<artifactId>cassandra-driver</artifactId>
 			<version>0.0.1</version>
-		</dependency -->
-
+		</dependency-->
+        
 		<dependency> <!-- Driver do cassandra -->
 			<groupId>org.jnosql.diana</groupId>
 			<artifactId>hazelcast-driver</artifactId>

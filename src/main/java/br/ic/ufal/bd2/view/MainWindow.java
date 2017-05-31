@@ -2,6 +2,7 @@ package br.ic.ufal.bd2.view;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,12 +26,13 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class MainWindow extends JFrame{
+public class MainWindow extends JFrame implements ActionListener{
 	private JTextArea txtCode;
 	private JButton btnAdd, btnDelete;	// adicionar e apagar - update noutra janela
 	private JRadioButton rbRedis, rbCouchbase, rbCassandra, rbMongo;
 	private JTable tabela;
 	private JLabel lbltitle;
+	private ButtonGroup grp;
 	
 	public MainWindow() {
 		super("JNoSQL - CRUD on Swing");	
@@ -57,7 +59,7 @@ public class MainWindow extends JFrame{
 		rbMongo = new JRadioButton("Mongo");
 		rbRedis = new JRadioButton("Redis");
 		lbltitle = new JLabel("Redis Database");
-		ButtonGroup grp = new ButtonGroup();	//faz a magia do radio button
+		grp = new ButtonGroup();	//faz a magia do radio button
 		tabela = new JTable( new MyTableModel() );
 		tabela.setFillsViewportHeight(true);
 		
@@ -82,6 +84,10 @@ public class MainWindow extends JFrame{
 		grp.add(rbMongo);
 		
 		rbRedis.setSelected(true);
+		rbRedis.addActionListener(this);
+		rbCassandra.addActionListener(this);
+		rbCouchbase.addActionListener(this);
+		rbMongo.addActionListener(this);
 		
 		panel = new JPanel(new BorderLayout());
 		panelTop = new JPanel();
@@ -177,4 +183,22 @@ public class MainWindow extends JFrame{
 			JOptionPane.showMessageDialog(null, "Código para apagar registro.");
 		}
 	}//fim de ActionDelete
+
+	/**
+	 * Listener de MainWindow
+	 * @param e
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if ("Redis" == e.getActionCommand()){
+			JOptionPane.showMessageDialog(null, "Redis");
+		} else if("Cassandra" == e.getActionCommand()){
+			JOptionPane.showMessageDialog(null, "Cassandra");
+		} else if("CouchBase" == e.getActionCommand()){
+			JOptionPane.showMessageDialog(null, "Couchbase");
+		}else if ("Mongo" == e.getActionCommand()){
+			JOptionPane.showMessageDialog(null, "Mongo");
+		}
+	}
 }

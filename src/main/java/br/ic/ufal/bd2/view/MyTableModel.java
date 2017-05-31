@@ -2,10 +2,6 @@ package br.ic.ufal.bd2.view;
 
 import java.util.Map;
 
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 import br.ic.ufal.bd2.model.Student;
@@ -54,6 +50,10 @@ public class MyTableModel extends AbstractTableModel {
 	public int getRowCount() {
 		// o numero de linhas da tabela eh o mesmo dos dados
 		return data.length;
+	}
+	
+	public String getRowValues(int row){
+		return null;
 	}
 
 	@Override
