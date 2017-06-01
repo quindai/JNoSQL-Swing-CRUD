@@ -1,41 +1,33 @@
 package br.ic.ufal.bd2.dao;
 
-//******************Mongo***********************
-import org.jnosql.diana.api.document.*;
-import org.jnosql.diana.mongodb.document.MongoDBDocumentConfiguration;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 //**********************************************
-
-//+++++++++++++++++++++++++++++Couchbase benefits on Mongo import plus specific imports below
-//*****************CouchBase********************
-import java.util.UUID;
-import org.jnosql.diana.couchbase.document.CouchbaseDocumentConfiguration;
-//**********************************************
-
-//******************Redis***********************
-import org.jnosql.diana.api.Value;
-import org.jnosql.diana.api.key.BucketManager;
-import org.jnosql.diana.api.key.BucketManagerFactory;
-import org.jnosql.diana.api.key.KeyValueConfiguration;
-import org.jnosql.diana.hazelcast.key.HazelCastKeyValueConfiguration;
-import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 //**********************************************
+//+++++++++++++++++++++++++++++Couchbase benefits on Mongo import plus specific imports below
+//*****************CouchBase********************
+import java.util.UUID;
 
-//*****************Cassandra********************
-/*import com.datastax.driver.core.ConsistencyLevel;
-import org.jnosql.diana.api.column.Column;
-import org.jnosql.diana.api.column.ColumnCondition;
-import org.jnosql.diana.api.column.ColumnEntity;
-import org.jnosql.diana.api.column.ColumnQuery;
-import org.jnosql.diana.cassandra.column.CassandraColumnFamilyManager;
-import org.jnosql.diana.cassandra.column.CassandraConfiguration;
-import org.jnosql.diana.cassandra.column.CassandraDocumentEntityManagerFactory;
-import org.jnosql.diana.cassandra.column.CassandraPrepareStatment;
-*/
-import java.util.Arrays;
+//******************Redis***********************
+import org.jnosql.diana.api.Value;
+//******************Mongo***********************
+import org.jnosql.diana.api.document.Document;
+import org.jnosql.diana.api.document.DocumentCollectionManager;
+import org.jnosql.diana.api.document.DocumentCollectionManagerFactory;
+import org.jnosql.diana.api.document.DocumentCondition;
+import org.jnosql.diana.api.document.DocumentConfiguration;
+import org.jnosql.diana.api.document.DocumentEntity;
+import org.jnosql.diana.api.document.DocumentQuery;
+import org.jnosql.diana.api.key.BucketManager;
+import org.jnosql.diana.api.key.BucketManagerFactory;
+import org.jnosql.diana.api.key.KeyValueConfiguration;
+import org.jnosql.diana.couchbase.document.CouchbaseDocumentConfiguration;
+//**********************************************
+import org.jnosql.diana.hazelcast.key.HazelCastKeyValueConfiguration;
+import org.jnosql.diana.mongodb.document.MongoDBDocumentConfiguration;
 //***********************************************
 public class ConnFactory {
 

@@ -1,10 +1,5 @@
 package br.ic.ufal.bd2.view;
 
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -16,7 +11,7 @@ import br.ic.ufal.bd2.model.EnumGenres;
 import br.ic.ufal.bd2.model.Student;
 
 public class NewRegister extends JDialog{
-	String[] labels = {"Nome: ", "Email: ", "Gênero:"};
+	String[] labels = {"Nome: ", "Email: ", "Gï¿½nero:"};
 	JComboBox genre;
 	JTextField name, email;
 	JPanel panel;

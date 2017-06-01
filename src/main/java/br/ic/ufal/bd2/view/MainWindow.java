@@ -1,6 +1,7 @@
 package br.ic.ufal.bd2.view;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -50,6 +52,7 @@ public class MainWindow extends JFrame implements ActionListener{
 	    return Toolkit.getDefaultToolkit().getImage(url);
 	}*/
 	
+	
 	private void init(){
 		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		JPanel panel, panelTop, panelButtons, panelRadios, panelTable, panelCode;
@@ -60,7 +63,12 @@ public class MainWindow extends JFrame implements ActionListener{
 		rbCouchbase = new JRadioButton("CouchBase");
 		rbMongo = new JRadioButton("Mongo");
 		rbRedis = new JRadioButton("Redis");
-		lbltitle = new JLabel("Redis Database");
+		lbltitle = new JLabel("Redis Database", 
+				new ImageIcon(getClass().getResource("/img/redis32.png")),
+				SwingConstants.CENTER);
+		
+		lbltitle.setFont(new Font(null, Font.PLAIN, 16));
+		
 		grp = new ButtonGroup();	//faz a magia do radio button
 		tabela = new JTable( studentModel );
 		tabela.setFillsViewportHeight(true);
@@ -102,7 +110,7 @@ public class MainWindow extends JFrame implements ActionListener{
 		btnDelete.setEnabled(false);
 		txtCode.setEditable(false);
 		txtCode.setWrapStyleWord(true);
-		txtCode.setText("Histórico de Comandos:"+ System.lineSeparator());
+		txtCode.setText("HistÃ³rico de Comandos:"+ System.lineSeparator());
 		
 		JScrollPane spData = new JScrollPane(tabela,
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -125,7 +133,6 @@ public class MainWindow extends JFrame implements ActionListener{
 		panelTop.add(panelButtons);
 		panelTop.add(panelRadios);
 		panelTop.add(lbltitle);
-		
 		panel.add(BorderLayout.NORTH, panelTop);
 		panel.add(BorderLayout.CENTER, sp);
 		panel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
@@ -183,7 +190,7 @@ public class MainWindow extends JFrame implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 		
-			JOptionPane.showMessageDialog(null, "Código para apagar registro.");
+			JOptionPane.showMessageDialog(null, "Cï¿½digo para apagar registro.");
 		}
 	}//fim de ActionDelete
 
@@ -196,12 +203,25 @@ public class MainWindow extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if ("Redis" == e.getActionCommand()){
 			txtCode.append("Conectado no Redis"+ System.lineSeparator());
+			
+			lbltitle.setText("Redis Database");
+			lbltitle.setIcon( new ImageIcon(getClass().getResource("/img/redis32.png")) );
+			
 		} else if("Cassandra" == e.getActionCommand()){
 			txtCode.append("Conectado no Cassandra"+ System.lineSeparator());
+			
+			lbltitle.setText("Cassandra Database");
+			lbltitle.setIcon( new ImageIcon(getClass().getResource("/img/cassandra32.png")) );
 		} else if("CouchBase" == e.getActionCommand()){
 			txtCode.append("Conectado no Couchbase"+ System.lineSeparator());
+			
+			lbltitle.setText("CouchBase Database");
+			lbltitle.setIcon( new ImageIcon(getClass().getResource("/img/couchbase32.png")) );
 		}else if ("Mongo" == e.getActionCommand()){
 			txtCode.append("Conectado no Mongo"+ System.lineSeparator());
+			lbltitle.setText("Mongo Database");
+			lbltitle.setIcon( new ImageIcon(getClass().getResource("/img/mongodb32.png")) );
+			
 		}
 	}
 }
