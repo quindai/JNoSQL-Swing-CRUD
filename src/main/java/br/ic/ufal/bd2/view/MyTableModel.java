@@ -52,8 +52,12 @@ public class MyTableModel extends AbstractTableModel {
 		return data.length;
 	}
 	
-	public String getRowValues(int row){
-		return null;
+	public Student getRowValues(int row){
+		Student s = new Student();
+		s.setName((String)data[row][0]);
+		s.setId((int)data[row][1]);
+		s.setNota((double)data[row][2]);
+		return s;
 	}
 
 	@Override

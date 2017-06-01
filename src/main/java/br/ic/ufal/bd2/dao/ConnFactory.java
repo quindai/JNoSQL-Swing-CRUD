@@ -7,6 +7,12 @@ import java.util.List;
 import java.util.Optional;
 //**********************************************
 
+//+++++++++++++++++++++++++++++Couchbase benefits on Mongo import plus specific imports below
+//*****************CouchBase********************
+import java.util.UUID;
+import org.jnosql.diana.couchbase.document.CouchbaseDocumentConfiguration;
+//**********************************************
+
 //******************Redis***********************
 import org.jnosql.diana.api.Value;
 import org.jnosql.diana.api.key.BucketManager;
@@ -17,13 +23,6 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 //**********************************************
-
-
-//*****************CouchBase********************
-import java.util.UUID;
-import org.jnosql.diana.couchbase.document.CouchbaseDocumentConfiguration;
-//**********************************************
-
 
 //*****************Cassandra********************
 /*import com.datastax.driver.core.ConsistencyLevel;
@@ -57,8 +56,8 @@ public class ConnFactory {
             DocumentCollectionManager collectionManager = collectionFactory.get(DATABASE);
 
             DocumentEntity entity = DocumentEntity.of(DOCUMENT_COLLECTION);
-            entity.add(Document.of("name", "Daniel Soro"));
-            entity.add(Document.of("age", 26));
+           /* entity.add(Document.of("name", "Daniel Soro"));
+            entity.add(Document.of("age", 26));*/
 
             DocumentEntity entitySaved = collectionManager.save(entity);
             Optional<Document> id = entitySaved.find("_id");

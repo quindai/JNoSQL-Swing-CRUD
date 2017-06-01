@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import br.ic.ufal.bd2.model.EnumGenres;
+import br.ic.ufal.bd2.model.Student;
 
 public class NewRegister extends JDialog{
 	String[] labels = {"Nome: ", "Email: ", "Gênero:"};
@@ -28,13 +29,23 @@ public class NewRegister extends JDialog{
 		setLocationRelativeTo(j);
 	}
 	
-	public NewRegister(JFrame j, String[] data){
+	public NewRegister(JFrame j, Object[] data){
 		//assuming data size fixed
 		super(j, j.getTitle(), true);
 		init();
 		pack();
-		name.setText( data[0] );
-		email.setText(data[1]);
+		name.setText( (String)data[0] );
+		email.setText((String)data[1]);
+		setLocationRelativeTo(j);
+	}
+	
+	public NewRegister(JFrame j, Student data){
+		//assuming data size fixed
+		super(j, j.getTitle(), true);
+		init();
+		pack();
+		name.setText( data.getName() );
+		email.setText(""+ data.getId());
 		setLocationRelativeTo(j);
 	}
 	

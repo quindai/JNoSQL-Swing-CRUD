@@ -33,6 +33,7 @@ public class MainWindow extends JFrame implements ActionListener{
 	private JTable tabela;
 	private JLabel lbltitle;
 	private ButtonGroup grp;
+	private MyTableModel studentModel;
 	
 	public MainWindow() {
 		super("JNoSQL - CRUD on Swing");	
@@ -52,6 +53,7 @@ public class MainWindow extends JFrame implements ActionListener{
 	private void init(){
 		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		JPanel panel, panelTop, panelButtons, panelRadios, panelTable, panelCode;
+		studentModel = new MyTableModel();
 		btnAdd = new JButton(new ActionAdd("", new ImageIcon(getClass().getResource("/img/fileAdd.png")), "Adicionar registro", new Integer(KeyEvent.VK_A)));
 		btnDelete = new JButton(new ActionDelete("", new ImageIcon(getClass().getResource("/img/fileDel.png")), "Apagar registro", new Integer(KeyEvent.VK_A)));
 		rbCassandra = new JRadioButton("Cassandra");
@@ -60,7 +62,7 @@ public class MainWindow extends JFrame implements ActionListener{
 		rbRedis = new JRadioButton("Redis");
 		lbltitle = new JLabel("Redis Database");
 		grp = new ButtonGroup();	//faz a magia do radio button
-		tabela = new JTable( new MyTableModel() );
+		tabela = new JTable( studentModel );
 		tabela.setFillsViewportHeight(true);
 		
 		tabela.addMouseListener(new MouseAdapter() {
@@ -70,7 +72,7 @@ public class MainWindow extends JFrame implements ActionListener{
 					if (e.getClickCount() == 2){ //pega clique duplo
 						int row = tabela.getSelectedRow();
 						int col = tabela.getSelectedColumn();
-						new NewRegister(MainWindow.this, new String []{"nada", "nepias"}).setVisible(true);
+						new NewRegister(MainWindow.this, studentModel.getRowValues(row)).setVisible(true);
 					}
 				} else {
 					btnDelete.setEnabled(false);
@@ -100,6 +102,7 @@ public class MainWindow extends JFrame implements ActionListener{
 		btnDelete.setEnabled(false);
 		txtCode.setEditable(false);
 		txtCode.setWrapStyleWord(true);
+		txtCode.setText("Histórico de Comandos:"+ System.lineSeparator());
 		
 		JScrollPane spData = new JScrollPane(tabela,
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -192,13 +195,13 @@ public class MainWindow extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if ("Redis" == e.getActionCommand()){
-			JOptionPane.showMessageDialog(null, "Redis");
+			txtCode.append("Conectado no Redis"+ System.lineSeparator());
 		} else if("Cassandra" == e.getActionCommand()){
-			JOptionPane.showMessageDialog(null, "Cassandra");
+			txtCode.append("Conectado no Cassandra"+ System.lineSeparator());
 		} else if("CouchBase" == e.getActionCommand()){
-			JOptionPane.showMessageDialog(null, "Couchbase");
+			txtCode.append("Conectado no Couchbase"+ System.lineSeparator());
 		}else if ("Mongo" == e.getActionCommand()){
-			JOptionPane.showMessageDialog(null, "Mongo");
+			txtCode.append("Conectado no Mongo"+ System.lineSeparator());
 		}
 	}
 }
