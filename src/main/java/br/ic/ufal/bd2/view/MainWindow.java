@@ -1,6 +1,8 @@
 package br.ic.ufal.bd2.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,6 +70,7 @@ public class MainWindow extends JFrame implements ActionListener{
 				SwingConstants.CENTER);
 		
 		lbltitle.setFont(new Font(null, Font.PLAIN, 16));
+		lbltitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		grp = new ButtonGroup();	//faz a magia do radio button
 		tabela = new JTable( studentModel );
@@ -103,11 +106,17 @@ public class MainWindow extends JFrame implements ActionListener{
 		panelTop = new JPanel();
 		panelRadios = new JPanel();
 		panelButtons = new JPanel();
+		
 		panelTop.setLayout(new BoxLayout(panelTop, BoxLayout.Y_AXIS));
+		
+		panelTop.setBackground(Color.black);
+		//panelRadios.setBackground(Color.blue);
+		//panelButtons.setBackground(Color.green);
 		
 		txtCode = new JTextArea(2,15);
 		
 		btnDelete.setEnabled(false);
+		btnAdd.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		txtCode.setEditable(false);
 		txtCode.setWrapStyleWord(true);
 		txtCode.setText("Histórico de Comandos:"+ System.lineSeparator());
@@ -125,12 +134,14 @@ public class MainWindow extends JFrame implements ActionListener{
 		
 		panelButtons.add(btnAdd);
 		panelButtons.add(btnDelete);
+		
+		panelButtons.add(panelRadios);
 		panelRadios.add(rbRedis);
 		panelRadios.add(rbCassandra);
 		panelRadios.add(rbCouchbase);
 		panelRadios.add(rbMongo);
 		
-		panelTop.add(panelButtons);
+		//panelTop.add(panelButtons);
 		panelTop.add(panelRadios);
 		panelTop.add(lbltitle);
 		panel.add(BorderLayout.NORTH, panelTop);
